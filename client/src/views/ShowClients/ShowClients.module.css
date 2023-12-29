@@ -1,0 +1,5 @@
+.spantable:hover {
+    cursor: pointer;
+    background-color: darkslategray !important;
+    color: rgb(59, 219, 193);    
+}

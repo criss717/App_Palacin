@@ -1,6 +1,9 @@
 import './App.css'
 import  {Routes,Route} from 'react-router-dom'
-import ShowClient from './components/ShowClient/ShowClient'
+import ShowClients from './views/ShowClients/ShowClients'
+import ShowBatidoras from './views/ShowBatidoras/ShowBatidoras'
+import ShowReductores from './views/ShowReductores/ShowReductores'
+
 
 function App() { 
   
@@ -10,7 +13,9 @@ function App() {
         <Route path='/' />
       </Routes>
       <button className='btn btn-primary'>Clientes</button>   
-      <ShowClient/>
+      <ShowClients/>
+      <ShowBatidoras/>
+      <ShowReductores/>
     </div>
   )
 }

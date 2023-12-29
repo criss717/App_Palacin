@@ -1,19 +1,9 @@
-import React, { useEffect,useState } from 'react'
-import axios from 'axios'
+import React from 'react'
 
-function ShowClient() {
-    const [clients,setClients]=useState([])
-    const getClients= async()=>{
-        const {data}=await axios.get('http://localhost:3001/clients') 
-        console.log(data);
-        setClients(data)
-    }
-    useEffect(()=>{
-        if(clients.length===0)getClients();
-        console.log(clients);
-    },[clients])
-    
+function Tables() {
+
     return (
+
         <div>
             <table className="table">
                 <thead>
@@ -35,12 +25,12 @@ function ShowClient() {
                                 <td>{client.telefono}</td>
                                 <td>
                                     {client.Batidoras.map((batidora, index) => (
-                                        <span className='bg-info m-1' key={index}>{batidora.name}{index < client.Batidoras.length - 1 ? ', ' : ''}</span>
+                                        <span onClick={()=>handlerDetail()} className={`bg-info m-1 ${s.spantable}`}key={index}>{batidora.name}{index < client.Batidoras.length - 1 ? ', ' : ''}</span>
                                     ))}
                                 </td>
                                 <td>
                                     {client.Batidoras.map((batidora, index) => (
-                                        <span className='bg-info m-1' key={index}>{batidora.Reductor.name}{index < client.Batidoras.length - 1 ? ', ' : ''}</span>
+                                        <span className={`bg-info m-1 ${s.spantable}`}key={index}>{batidora.Reductor.name}{index < client.Batidoras.length - 1 ? ', ' : ''}</span>
                                     ))}
                                 </td>
                             </tr>
@@ -53,4 +43,4 @@ function ShowClient() {
     )
 }
 
-export default ShowClient
+export default Tables
