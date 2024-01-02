@@ -6,11 +6,15 @@ function ShowBatidoras() {
     const [batidoras,setBatidoras]=useState([])
     const [keys,setKeys]=useState([]) //almacena los nombres de las filas
 
-
     const getBatidoras= async()=>{
-        const {data}=await axios.get('http://localhost:3001/batidoras') 
-        console.log(data);
-        setBatidoras(data)
+        try {
+            const {data}=await axios.get('http://localhost:3001/batidoras') 
+            console.log(data);
+            setBatidoras(data)        
+            
+        } catch (error) {
+            console.log(error);
+        }
     }
     const getKeys=(Batidoras)=>{ //obtener nomber de columnas / filas
         const keys= Batidoras.length>0?Object.keys(Batidoras[0]) : []

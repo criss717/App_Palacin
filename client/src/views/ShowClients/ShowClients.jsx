@@ -13,9 +13,13 @@ function ShowClients() {
     const [keys,setKeys]=useState([]) //almacena los nombres de las filas
 
     const getClients= async()=>{
-        const {data}=await axios.get('http://localhost:3001/clients') 
-        console.log(data);
-        setClients(data)
+        try {
+            const {data}=await axios.get('http://localhost:3001/clients') 
+            console.log(data);
+            setClients(data)            
+        } catch (error) {
+            console.log(error);
+        }
     }
     const getKeys=(clients)=>{ //obtener nomber de columnas / filas
         const keys= clients.length>0?Object.keys(clients[0]) : []
