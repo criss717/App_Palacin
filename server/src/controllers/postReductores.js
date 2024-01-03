@@ -2,8 +2,8 @@ const {Reductor} = require("../db");
 
 module.exports= async (req,res)=>{
     try {
-        const {name,model,RPM,relacion} = req.body;       
-        if(!name,!model,!RPM,!relacion){
+        const {marca,model,tipo,RPM_out,relacion,KW,tipo_brida} = req.body;       
+        if(!marca,!model,!RPM_out,!relacion,!tipo,!KW,!tipo_brida){
             return res.status(403).send('Faltan datos')
         }
         // const existingActivity = await Activity.findAll({ //para validar q no se repita nombre de cliente con su
@@ -22,10 +22,13 @@ module.exports= async (req,res)=>{
         // }
         // si no hay paises q contengan esta actividad, procedemos a crearla
         await Reductor.create({  //creamos la fila
-            name,
+            marca,
             model,
-            RPM,
-            relacion            
+            RPM_out,
+            relacion,
+            tipo,
+            KW,
+            tipo_brida            
         }) 
         
         const reductores= await Reductor.findAll(); 

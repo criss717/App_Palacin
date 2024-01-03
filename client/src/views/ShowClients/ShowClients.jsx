@@ -14,8 +14,7 @@ function ShowClients() {
 
     const getClients= async()=>{
         try {
-            const {data}=await axios.get('http://localhost:3001/clients') 
-            console.log(data);
+            const {data}=await axios.get('http://localhost:3001/clients')             
             setClients(data)            
         } catch (error) {
             console.log(error);
@@ -66,7 +65,7 @@ function ShowClients() {
                                 </td>
                                 <td>
                                     {client.Batidoras.map((batidora, index) => (
-                                        <span className={`bg-info m-1 ${s.spantable}`} key={index}>{batidora.Reductor.name}{index < client.Batidoras.length - 1 ? ', ' : ''}</span>
+                                        <span className={`bg-info m-1 ${s.spantable}`} key={index}>{batidora.Reductor.marca}{index < client.Batidoras.length - 1 ? ', ' : ''}</span>
                                     ))}
                                 </td>
                             </tr>                                       

@@ -7,7 +7,7 @@ const getBatidoras= async(req,res)=>{
             const batidoras= await Batidora.findAll({                                 
                 include:{ // asociación con el modelo reductor
                     model:Reductor,
-                    attributes:["name"]
+                    attributes:["marca"]
                 }                
             })
             return batidoras.length > 0 ? res.status(200).json(batidoras) 

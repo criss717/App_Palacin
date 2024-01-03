@@ -5,7 +5,7 @@ import ShowBatidoras from './views/ShowBatidoras/ShowBatidoras'
 import ShowReductores from './views/ShowReductores/ShowReductores'
 import FormClient from './views/FormClient/FormClient'
 import FormBatidora from './views/FormBatidora/FormBatidora'
-
+import FormReductor from './views/FormReductor/FormReductor'
 
 function App() { 
   //hooks
@@ -25,6 +25,7 @@ function App() {
       <Routes>
         <Route path='/postClient' element={<FormClient/>}/>
         <Route path='/postBatidora' element={<FormBatidora/>}/>
+        <Route path='/postReductor' element={<FormReductor/>}/>
       </Routes>
     </div>
   )

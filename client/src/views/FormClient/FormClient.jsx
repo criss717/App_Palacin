@@ -108,7 +108,7 @@ function FormClient() {
 
     return (
         <form className={`${s.divForm} bg-info form-control needs-validation`} onSubmit={(e) => handlerSubmitForm(e)} noValidate>
-            <h1 className='fw-bolder mb-4'><span className="badge text-bg-secondary fw-bolder">Crea una nuevo cliente</span></h1>
+            <h1 className='fw-bolder mb-4'><span className="badge text-bg-secondary fw-bolder p-2   ">Crea un nuevo CLIENTE</span></h1>
             <div className='row g-2 mt-5 mb-3'>
                 <div className="form-floating col-md-8">
                     <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingInput" name='fullName' required />

@@ -51,7 +51,7 @@ function ShowBatidoras() {
                                 <th scope="row">{batidora.id}</th>
                                 <td>{batidora.name}</td>
                                 <td>{batidora.año}</td>
-                                <td><span className={`bg-info m-1 ${s.spantable}`} >{batidora.Reductor.name}</span></td>                               
+                                <td><span className={`bg-info m-1 ${s.spantable}`} >{batidora.Reductor.marca}</span></td>                               
                             </tr>
                           
                         </tbody>

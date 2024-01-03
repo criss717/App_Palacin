@@ -37,14 +37,17 @@ function ShowReductores() {
                 </thead>
                 {
                     reductores.length>0 && 
-                    reductores.map((batidora)=>
-                        <tbody key={batidora.id}>
+                    reductores.map((reductor)=>
+                        <tbody key={reductor.id}>
                             <tr>
-                                <th scope="row">{batidora.id}</th>
-                                <td>{batidora.name}</td>
-                                <td>{batidora.model}</td>
-                                <td>{batidora.RPM}</td>
-                                <td>{batidora.relacion}</td>                                
+                                <th scope="row">{reductor.id}</th>
+                                <td>{reductor.marca}</td>
+                                <td>{reductor.tipo}</td> 
+                                <td>{reductor.model}</td>
+                                <td>{reductor.RPM_out}</td>
+                                <td>{reductor.relacion}</td>  
+                                <td>{reductor.KW}</td> 
+                                <td>{reductor.tipo_brida}</td>                               
                             </tr>                          
                         </tbody>
                     )

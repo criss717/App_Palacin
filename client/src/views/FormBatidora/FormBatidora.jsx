@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Select from 'react-select'
 import axios from 'axios'
 import s from '../FormBatidora/FormBatidora.module.css'
 
@@ -23,7 +22,7 @@ function FormBatidora() {
             console.log(error);
         }
     }
-    //post reductor
+    //post batidora
     const createBatidora = async (batidora) => {
         try {
             const { data } = await axios.post('http://localhost:3001/postBatidora', batidora)
@@ -42,12 +41,11 @@ function FormBatidora() {
         })        
     }
     const handlerSubmitForm = (e) => {
-        e.preventDefault()
-        console.log( (reductores.find((reductor)=>reductor.name===dataForm.reductorId)).id);
+        e.preventDefault()        
         createBatidora({
             ...dataForm,
             año:Number(dataForm.año),
-            reductorId: reductores.find((reductor)=>reductor.name===dataForm.reductorId).id// para enviar solamente los id
+            reductorId: reductores.find((reductor)=>reductor.marca===dataForm.reductorId).id// para enviar solamente los id
         })
         e.target.reset() //limpiamos el form
         setDataForm({ // limpiamos el input select 
@@ -81,7 +79,7 @@ function FormBatidora() {
 
     return (
         <form className={`${s.divFormBatidora} bg-info form-control needs-validation`} onSubmit={(e) => handlerSubmitForm(e)} noValidate>
-            <h1 className='fw-bolder mb-4'><span className="badge text-bg-secondary fw-bolder">Crea una nueva BATIDORA</span></h1>
+            <h1 className='fw-bolder mb-4'><span className="badge text-bg-secondary fw-bolder p-2">Crea una nueva BATIDORA</span></h1>
             <div className='row g-2 mt-5 mb-3'>
                 <div className="form-floating col-md-8">
                     <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingInput" name='name' required />
@@ -96,7 +94,7 @@ function FormBatidora() {
                 <select onChange={(e) => handlerInputForm(e)} className="form-select" value={dataForm.reductorId} name='reductorId' id="floatingSelect" aria-label="Floating label select example" required>  
                     <option selected disabled value="">Choose...</option>                  
                     {
-                        reductores.length>0 && reductores.map((reductor)=><option key={reductor.id}>{reductor.name}</option>)
+                        reductores.length>0 && reductores.map((reductor)=><option key={reductor.id}>{reductor.marca}</option>)
                     }                    
                 </select>
 

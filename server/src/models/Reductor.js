@@ -9,7 +9,11 @@ module.exports = (sequelize) => {
         primaryKey:true,
         autoIncrement:true,
     },
-    name: {
+    marca: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    tipo:{
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -17,13 +21,19 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    RPM:{
+    RPM_out:{
         type: DataTypes.STRING,
         allowNull: false,
     },
     relacion:{
         type: DataTypes.STRING,      
-    },   
+    },  
+    KW:{
+        type: DataTypes.STRING,      
+    },
+    tipo_brida:{
+        type: DataTypes.STRING, 
+    } 
   }, {
     timestamps:false //retira los createdAt y updateAt automáticos
  });

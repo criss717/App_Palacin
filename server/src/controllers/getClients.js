@@ -13,7 +13,7 @@ const getClients= async(req,res)=>{
                     },
                     include:{
                         model:Reductor,
-                        attributes:["name"]
+                        attributes:["marca"]
                     }
                 } 
             })

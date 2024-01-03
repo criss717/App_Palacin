@@ -7,16 +7,22 @@ const createTable= async(Reductor,Batidora)=>{
     if (count === 0) {
         try {
             await Reductor.create({
-                name:'bonfiglioli',
-                model:'2024',
-                RPM:'1500',
-                relacion:'75',            
+                marca:'bonfiglioli',
+                model:'63',
+                RPM_out:'15',
+                relacion:'20',
+                KW:'0.75',
+                tipo_brida:'115',
+                tipo:'km'        
             })
             await Reductor.create({
-                name:'PKD',
-                model:'2024',
-                RPM:'1200',
-                relacion:'15',            
+                marca:'PKD',
+                model:'75',
+                RPM_out:'8',
+                relacion:'20',
+                KW:'1',
+                tipo_brida:'115',
+                tipo:'km'             
             })
             await Batidora.create({
                 name:'H4.5 6000',
