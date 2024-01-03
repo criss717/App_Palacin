@@ -6,19 +6,30 @@ import s from '../FormClient/FormClient.module.css'
 function FormClient() {
     //hooks
     const [batidoras, setBatidoras] = useState([]) //mostrar opciones { value: 'batidora1', label: 'bati' },
-    const [inputSelect, setInputSelect] = useState([])
+    const [dataForm, setDataForm] = useState({    //guardará los inputs del usuario
+        fullName: '',
+        number: '',
+        batidoras: [],
+        observaciones: ''
+    })
+
     const customStyles = {
-        option: (provided, state) => ({
-          ...provided,
-          height: '80px',
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'flex-start', // Puedes ajustar esto según tus necesidades
-          paddingLeft: '10px', // Añadir algún relleno izquierdo
-          paddingRight: '10px', // Añadir algún relleno derecho
+        control: (provided, state) => ({
+            ...provided,
+            // Estilos para el contenedor principal antes de desplegar la lista del select           
+            height: '80px',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'flex-start',
+            border: 'none',
+            outline: state.isFocused && 'none',
+            borderColor: 'none',
+            boxShadow: 'none',
+            ':hover': {
+                boxShadow: 'none'
+            },
         }),
-      };
-      
+    };
 
     //get batidoras
     const getBatidoras = async () => {
@@ -26,17 +37,49 @@ function FormClient() {
             const { data } = await axios.get('http://localhost:3001/batidoras')
             console.log(data);
             let nameBatidoras = []
-            data.map((batidora) => nameBatidoras.push({ value: batidora.name, label: batidora.name }))   // guardamos los nombres en un array
+            data.map((batidora) => nameBatidoras.push({ value: batidora.id, label: batidora.name }))   // guardamos los nombres en un array
             setBatidoras(nameBatidoras)
 
         } catch (error) {
             console.log(error);
         }
     }
+    //post client
+    const createClient = async (client) => {
+        try {
+            const { data } = await axios.post('http://localhost:3001/postClient', client)
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     //handlers
-    const handlerInputSelect = (e) => {
-        setInputSelect(e)
+    const handlerInputForm = (e) => {
+        if (e.target) { //porque el select no tiene target
+            const { name, value } = e.target
+            setDataForm({
+                ...dataForm,
+                [name]: value
+            })
+        } else {
+            setDataForm({
+                ...dataForm,
+                batidoras: e
+            })
+        }
+    }
+    const handlerSubmitForm = (e) => {
+        e.preventDefault()
+        createClient({
+            ...dataForm,
+            batidoras: dataForm.batidoras.map((batidora) => batidora.value) // para enviar solamente los id
+        })
+        e.target.reset() //limpiamos el form
+        setDataForm({ // limpiamos el iinput select multi
+            ...dataForm,
+            batidoras:[]
+        })
     }
 
     useEffect(() => {
@@ -44,35 +87,37 @@ function FormClient() {
     }, [])
 
     return (
-        <div>
+        <form className='' onSubmit={(e) => handlerSubmitForm(e)}>
             <div className="form-floating mb-3">
-                <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingInput" name='fullName' />
                 <label htmlFor="floatingInput">Full Name</label>
             </div>
             <div className="form-floating mb-3">
-                <input type="text" className="form-control" id="floatingPassword" placeholder="Password" />
+                <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingPassword" name='number' />
                 <label htmlFor="floatingPassword">Number</label>
             </div>
-            <div className={`form-floating`}>           
-                <Select                    
+            <div className={`form-floating form-control mb-3`}>
+                <Select
                     isMulti
                     name="batidoras"
                     options={batidoras.length > 0 ? batidoras : null}
-                    className={`${s.divSelect} basic-multi-select`}
-                    id="floatingSelect" 
-                    aria-label="Floating label select example"
+                    className={`basic-multi-select`}
+                    id="floatingSelect"
                     classNamePrefix="select"
-                    placeholder='Select a batidora'
-                    value={inputSelect}
-                    onChange={(e) => handlerInputSelect(e)}
-                    height={'80px'}
+                    value={dataForm.batidoras}
+                    onChange={(e) => handlerInputForm(e)}
+                    height={'800px'}
                     styles={customStyles}
                 />
                 <label htmlFor="floatingSelect">Select batidoras</label>
             </div>
-          
+            <div className="form-floating mb-3">
+                <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingPassword" name='observaciones' />
+                <label htmlFor="floatingPassword">Observaciones</label>
+            </div>
+            <button className='btn btn-dark' type='submit'>Create new client</button>
 
-        </div>
+        </form>
     )
 }
 

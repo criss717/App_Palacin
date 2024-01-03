@@ -2,8 +2,8 @@ const {Client} = require("../db");
 
 module.exports= async (req,res)=>{
     try {
-        const {name,telefono,batidoras} = req.body;       
-        if(!name,!telefono,!batidoras){
+        const {fullName,number,batidoras,observaciones} = req.body;       
+        if(!fullName,!number,!batidoras){
             return res.status(403).send('Faltan datos')
         }
         // const existingActivity = await Activity.findAll({ //para validar q no se repita nombre de cliente con su
@@ -22,10 +22,11 @@ module.exports= async (req,res)=>{
         // }
         // si no hay paises q contengan esta actividad, procedemos a crearla
         const newClient = await Client.create({ 
-            name,
-            telefono            
+            fullName,
+            number,
+            observaciones            
         }) 
-        newClient.addBatidoras(batidoras)
+        newClient.addBatidoras(batidoras) //añade array de id de batidoras relacionadas
         const clientes= await Client.findAll(); 
         console.log(clientes);      
         clientes ? res.status(200).json(clientes) 

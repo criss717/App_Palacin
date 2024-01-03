@@ -7,13 +7,16 @@ module.exports=(sequelize)=>{
             autoIncrement:true,
             primaryKey:true
         },
-        name: {
+        fullName: {
             type:DataTypes.STRING,
             allowNull:false
         },
-        telefono:{
-            type:DataTypes.INTEGER,
-        },       
+        number:{
+            type:DataTypes.STRING,
+        },  
+        observaciones:{
+            type:DataTypes.STRING
+        }     
     },{
         timestamps:false //retira los createdAt y updateAt automáticos
     })
