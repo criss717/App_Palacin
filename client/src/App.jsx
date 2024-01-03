@@ -4,6 +4,7 @@ import ShowClients from './views/ShowClients/ShowClients'
 import ShowBatidoras from './views/ShowBatidoras/ShowBatidoras'
 import ShowReductores from './views/ShowReductores/ShowReductores'
 import FormClient from './views/FormClient/FormClient'
+import FormBatidora from './views/FormBatidora/FormBatidora'
 
 
 function App() { 
@@ -13,7 +14,7 @@ function App() {
   return (
     <div> 
       {
-        location.pathname!=='/postClient' && (<>
+        location.pathname==='/' && (<>
           <button className='btn btn-primary'>Clientes</button>   
           <ShowClients/>
           <ShowBatidoras/>
@@ -23,6 +24,7 @@ function App() {
       } 
       <Routes>
         <Route path='/postClient' element={<FormClient/>}/>
+        <Route path='/postBatidora' element={<FormBatidora/>}/>
       </Routes>
     </div>
   )

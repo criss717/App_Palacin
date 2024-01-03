@@ -12,6 +12,7 @@ function FormClient() {
         batidoras: [],
         observaciones: ''
     })
+    const [noValidate,setNoValidate]=useState(false) //para validar el form con bootstrap
 
     const customStyles = {
         control: (provided, state) => ({
@@ -78,25 +79,49 @@ function FormClient() {
         e.target.reset() //limpiamos el form
         setDataForm({ // limpiamos el iinput select multi
             ...dataForm,
-            batidoras:[]
+            batidoras: []
         })
     }
 
     useEffect(() => {
-        getBatidoras()
+        getBatidoras();
+        (function () { //codigo para validar form bootrap 5   
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                            setNoValidate(true) // establecemos en true si hay alguna invalidada
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
     }, [])
 
     return (
-        <form className='' onSubmit={(e) => handlerSubmitForm(e)}>
-            <div className="form-floating mb-3">
-                <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingInput" name='fullName' />
-                <label htmlFor="floatingInput">Full Name</label>
-            </div>
-            <div className="form-floating mb-3">
-                <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingPassword" name='number' />
-                <label htmlFor="floatingPassword">Number</label>
+        <form className={`${s.divForm} bg-info form-control needs-validation`} onSubmit={(e) => handlerSubmitForm(e)} noValidate>
+            <h1 className='fw-bolder mb-4'><span className="badge text-bg-secondary fw-bolder">Crea una nuevo cliente</span></h1>
+            <div className='row g-2 mt-5 mb-3'>
+                <div className="form-floating col-md-8">
+                    <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingInput" name='fullName' required />
+                    <label htmlFor="floatingInput">Full Name</label>
+                </div>
+                <div className="form-floating col-md">
+                    <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingNumber" name='number' required/>
+                    <label htmlFor="floatingNumber">Number</label>
+                </div>
+
             </div>
             <div className={`form-floating form-control mb-3`}>
+                <input value={dataForm && dataForm.batidoras} type="text" className='d-none' required /> {/*la oculto para aprovechar el validate*/}
                 <Select
                     isMulti
                     name="batidoras"
@@ -107,15 +132,16 @@ function FormClient() {
                     value={dataForm.batidoras}
                     onChange={(e) => handlerInputForm(e)}
                     height={'800px'}
-                    styles={customStyles}
+                    styles={customStyles}                    
                 />
+                <div className="invalid-feedback text-end" style={{ fontWeight: "bold" }}>Required file</div>
                 <label htmlFor="floatingSelect">Select batidoras</label>
             </div>
-            <div className="form-floating mb-3">
-                <input onChange={(e) => handlerInputForm(e)} type="text" className="form-control" id="floatingPassword" name='observaciones' />
+            <div className="form-floating mb-5">
+                <textarea onChange={(e) => handlerInputForm(e)} className="form-control" id="floatingPassword" name='observaciones' style={{ height: "100px" }}></textarea>
                 <label htmlFor="floatingPassword">Observaciones</label>
             </div>
-            <button className='btn btn-dark' type='submit'>Create new client</button>
+            <button className='btn btn-primary fw-bolder' type='submit'>Create new client</button>
 
         </form>
     )

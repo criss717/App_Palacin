@@ -21,7 +21,7 @@ function ShowClients() {
             console.log(error);
         }
     }
-    const getKeys=(clients)=>{ //obtener nomber de columnas / filas
+    const getKeys=(clients)=>{ //obtener nombres de columnas / filas
         const keys= clients.length>0?Object.keys(clients[0]) : []
         console.log(keys);
         setKeys(keys)
@@ -56,8 +56,9 @@ function ShowClients() {
                         <tbody key={client.id}>
                             <tr>
                                 <th scope="row">{client.id}</th>
-                                <td>{client.name}</td>
-                                <td>{client.telefono}</td>
+                                <td>{client.fullName}</td>
+                                <td>{client.number}</td>
+                                <td> {client.observaciones}</td>
                                 <td>
                                     {client.Batidoras.map((batidora, index) => (
                                         <span onClick={()=>handlerDetail()} className={`bg-info m-1 ${s.spantable}`} key={index}>{batidora.name}{index < client.Batidoras.length - 1 ? ', ' : ''}</span>
