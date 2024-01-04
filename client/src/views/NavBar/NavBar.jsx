@@ -27,7 +27,7 @@ function NavBar() {
                             <NavDropdown.Item href="/">Ver clientes</NavDropdown.Item>                            
                         </NavDropdown>
                         <NavDropdown title="Batidoras" id="navbarBatidoras">
-                            <NavDropdown.Item href="/postBatidoras">Crear Nueva Batidora</NavDropdown.Item>
+                            <NavDropdown.Item href="/postBatidora">Crear Nueva Batidora</NavDropdown.Item>
                             <NavDropdown.Item href="/batidoras">Ver Batidoras</NavDropdown.Item>                           
                         </NavDropdown>
                         <NavDropdown title="Reductores" id="navbarScrollingDropdown">

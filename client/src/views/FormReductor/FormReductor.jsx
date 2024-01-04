@@ -67,7 +67,7 @@ function FormReductor() {
     }, [])
 
     return (
-        <form className={`${s.divFormReductor} bg-info form-control needs-validation`} onSubmit={(e) => handlerSubmitForm(e)} noValidate>
+        <form className={`${s.divFormReductor} bg-info form-control needs-validation mt-5`} onSubmit={(e) => handlerSubmitForm(e)} noValidate>
             <h1 className='fw-bolder mb-4'><span className="badge text-bg-secondary fw-bolder p-2">Crea un nuevo Reductor</span></h1>
             <div className='row g-2 mt-5 mb-3'>
                 <div className="form-floating col-md">
