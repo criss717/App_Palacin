@@ -29,7 +29,7 @@ function ShowBatidoras() {
     },[batidoras])
     
     return (
-        <div>
+        <div className='mt-5 col-12 col-md-10 col-xl-8'>
             <table className="table table-info table-hover">
                 <thead className='table-dark'>
                     <tr>

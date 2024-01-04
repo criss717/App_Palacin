@@ -4,3 +4,14 @@
     width: 600px !important;   
     
 }
+
+label{
+    font-weight: bolder !important;
+    font-size: large !important;
+    color: rgba(var(--bs-info-rgb),var(--bs-bg-opacity)) !important;
+}
+
+form button{
+    font-size: large !important;
+    
+}

@@ -5,7 +5,6 @@ import 'handsontable/dist/handsontable.full.min.css'
 import Handsontable from 'handsontable/base'
 import {registerAllModules} from 'handsontable/registry'
 registerAllModules()
-
 import {HotTable} from '@handsontable/react'
 
 function ShowClients() {
@@ -32,7 +31,7 @@ function ShowClients() {
     },[clients])
    
     return (
-        <div>
+        <div className='mt-5 col-12 col-md-10 col-xl-8'>
             <table className="table table-info table-hover">
                 <thead className='table-dark'>
                     <tr>
@@ -73,13 +72,13 @@ function ShowClients() {
                     )
                 }               
             </table>
-            <HotTable
+            {/* <HotTable
                 data={clients}
                 rowHeaders={true}
                 colHeaders={true}
                 height='auto'
                 licenseKey='non-commercial-and-evaluation'
-            />
+            /> */}
         </div>
     )
 }
